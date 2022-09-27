@@ -1,15 +1,21 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { MantineProvider } from '@mantine/core';
+import { AppProps } from "next/app";
+import Head from "next/head";
+import { Button, MantineProvider } from "@mantine/core";
+import { UserContext } from "../lib/context";
+import { useUserData } from "../lib/hooks";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+  const userData = useUserData();
 
   return (
     <>
       <Head>
         <title>Page title</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
       </Head>
 
       <MantineProvider
@@ -17,10 +23,10 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: 'light',
+          colorScheme: "light",
         }}
       >
-        <Component {...pageProps} />
+          <Component {...pageProps} />
       </MantineProvider>
     </>
   );

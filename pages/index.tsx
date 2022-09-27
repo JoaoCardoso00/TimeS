@@ -9,12 +9,18 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  Button,
 } from "@mantine/core";
 import { NextPage } from "next";
+import { SignInButton, SignOutButton } from "../features/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../lib/firebase";
 
 const Home: NextPage = () => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const [user] = useAuthState(auth);
+
   return (
     <AppShell
       styles={{
@@ -35,6 +41,9 @@ const Home: NextPage = () => {
           width={{ sm: 200, lg: 300 }}
         >
           <Text>Application navbar</Text>
+          <SignInButton />
+          <SignOutButton />
+          <Button onClick={() => console.log(user)}>aaaa</Button>
         </Navbar>
       }
       header={

@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   AppShell,
   Navbar,
   Header,
-  Footer,
-  Aside,
   Text,
   MediaQuery,
   Burger,
@@ -13,13 +11,14 @@ import {
 } from "@mantine/core";
 import { NextPage } from "next";
 import { SignInButton, SignOutButton } from "../features/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../lib/firebase";
+import { UserContext } from "../lib/context";
 
 const Home: NextPage = () => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
-  const [user] = useAuthState(auth);
+  const user = useContext(UserContext);
+
+  console.log(user);
 
   return (
     <AppShell
